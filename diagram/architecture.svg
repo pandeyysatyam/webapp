@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="660" viewBox="0 0 920 660" font-family="Arial, Helvetica, sans-serif">
+  <rect width="920" height="660" fill="#ffffff"/>
+
+  <!-- title -->
+  <text x="460" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#16191f">AWS Web Application Architecture</text>
+
+  <!-- internet / client -->
+  <rect x="390" y="56" width="140" height="44" rx="6" fill="#eef2f7" stroke="#8793a3"/>
+  <text x="460" y="83" text-anchor="middle" font-size="14" fill="#16191f">Internet / Client</text>
+
+  <!-- route53 + acm -->
+  <rect x="640" y="56" width="240" height="44" rx="6" fill="#f3eefb" stroke="#8a63c9"/>
+  <text x="760" y="76" text-anchor="middle" font-size="13" fill="#16191f">Route 53 (DNS alias)</text>
+  <text x="760" y="92" text-anchor="middle" font-size="12" fill="#5b6472">ACM certificate (HTTPS)</text>
+
+  <!-- VPC box -->
+  <rect x="40" y="120" width="840" height="470" rx="10" fill="none" stroke="#1f6feb" stroke-width="1.5"/>
+  <text x="56" y="142" font-size="13" font-weight="bold" fill="#1f6feb">VPC 10.0.0.0/16 (ap-south-1)</text>
+
+  <!-- AZ labels -->
+  <text x="270" y="166" text-anchor="middle" font-size="12" fill="#5b6472">Availability Zone A</text>
+  <text x="650" y="166" text-anchor="middle" font-size="12" fill="#5b6472">Availability Zone B</text>
+  <line x1="460" y1="150" x2="460" y2="580" stroke="#dde3ea" stroke-dasharray="4 4"/>
+
+  <!-- public subnet tier -->
+  <rect x="60" y="176" width="800" height="90" rx="8" fill="#f4faf4" stroke="#3f9142"/>
+  <text x="72" y="194" font-size="12" fill="#3f9142">Public subnets</text>
+
+  <!-- ALB spanning -->
+  <rect x="330" y="200" width="260" height="46" rx="6" fill="#fff3e6" stroke="#e08a2b"/>
+  <text x="460" y="222" text-anchor="middle" font-size="13" fill="#16191f">Application Load Balancer</text>
+  <text x="460" y="238" text-anchor="middle" font-size="11" fill="#5b6472">HTTP 80 redirect to HTTPS 443</text>
+
+  <!-- NAT + IGW -->
+  <rect x="80" y="202" width="90" height="42" rx="6" fill="#eef2f7" stroke="#8793a3"/>
+  <text x="125" y="227" text-anchor="middle" font-size="12" fill="#16191f">NAT GW</text>
+  <rect x="750" y="202" width="90" height="42" rx="6" fill="#eef2f7" stroke="#8793a3"/>
+  <text x="795" y="227" text-anchor="middle" font-size="12" fill="#16191f">Internet GW</text>
+
+  <!-- private app tier -->
+  <rect x="60" y="286" width="800" height="110" rx="8" fill="#eef5ff" stroke="#1f6feb"/>
+  <text x="72" y="304" font-size="12" fill="#1f6feb">Private app subnets (Auto Scaling Group)</text>
+
+  <rect x="150" y="318" width="220" height="60" rx="6" fill="#ffffff" stroke="#1f6feb"/>
+  <text x="260" y="344" text-anchor="middle" font-size="13" fill="#16191f">EC2 instance</text>
+  <text x="260" y="362" text-anchor="middle" font-size="11" fill="#5b6472">Amazon Linux 2023</text>
+
+  <rect x="550" y="318" width="220" height="60" rx="6" fill="#ffffff" stroke="#1f6feb"/>
+  <text x="660" y="344" text-anchor="middle" font-size="13" fill="#16191f">EC2 instance</text>
+  <text x="660" y="362" text-anchor="middle" font-size="11" fill="#5b6472">Amazon Linux 2023</text>
+
+  <!-- private db tier -->
+  <rect x="60" y="416" width="800" height="100" rx="8" fill="#fdf0f3" stroke="#c23b5b"/>
+  <text x="72" y="434" font-size="12" fill="#c23b5b">Private db subnets</text>
+
+  <rect x="330" y="446" width="260" height="56" rx="6" fill="#ffffff" stroke="#c23b5b"/>
+  <text x="460" y="469" text-anchor="middle" font-size="13" fill="#16191f">RDS MySQL (Multi-AZ)</text>
+  <text x="460" y="487" text-anchor="middle" font-size="11" fill="#5b6472">Primary in AZ A, standby in AZ B</text>
+
+  <!-- side services -->
+  <rect x="80" y="446" width="150" height="56" rx="6" fill="#f3eefb" stroke="#8a63c9"/>
+  <text x="155" y="469" text-anchor="middle" font-size="12" fill="#16191f">Secrets Manager</text>
+  <text x="155" y="487" text-anchor="middle" font-size="11" fill="#5b6472">DB credentials</text>
+
+  <rect x="690" y="446" width="150" height="56" rx="6" fill="#f4faf4" stroke="#3f9142"/>
+  <text x="765" y="469" text-anchor="middle" font-size="12" fill="#16191f">S3 (ALB logs)</text>
+  <text x="765" y="487" text-anchor="middle" font-size="11" fill="#5b6472">access logs</text>
+
+  <!-- arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#5b6472"/>
+    </marker>
+  </defs>
+
+  <line x1="460" y1="100" x2="460" y2="200" stroke="#5b6472" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="260" y1="246" x2="260" y2="318" stroke="#5b6472" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="660" y1="246" x2="660" y2="318" stroke="#5b6472" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="300" y1="378" x2="430" y2="446" stroke="#5b6472" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="620" y1="378" x2="490" y2="446" stroke="#5b6472" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="230" y1="360" x2="210" y2="446" stroke="#8a63c9" stroke-width="1.3" marker-end="url(#arrow)"/>
+  <line x1="590" y1="223" x2="690" y2="460" stroke="#3f9142" stroke-width="1.3" marker-end="url(#arrow)"/>
+</svg>

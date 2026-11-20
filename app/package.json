@@ -1,0 +1,14 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.654.0",
+    "express": "^4.19.2",
+    "mysql2": "^3.11.3"
+  }
+}

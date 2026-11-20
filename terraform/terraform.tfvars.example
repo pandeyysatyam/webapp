@@ -1,0 +1,10 @@
+project          = "webapp"
+region           = "ap-south-1"
+domain_name      = "app.example.com"
+hosted_zone_name = "example.com"
+app_repo_url     = "https://github.com/pandeyysatyam/webapp.git"
+
+instance_type        = "t3.micro"
+asg_desired_capacity = 2
+db_instance_class    = "db.t3.micro"
+db_multi_az          = true
